@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Setup &#8212; Machine Learning in Python</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -54,7 +54,10 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Deep Learning" href="imlp/imlp_4_deep_learning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -177,7 +180,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -211,7 +214,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -222,10 +225,22 @@
   <a class="reference internal nav-link" href="#prepare-working-environment">
    Prepare Working Environment
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-dependencies">
+     Additional Dependencies
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#editing-jupyter-book-export">
    Editing Jupyter Book Export
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#editing-slides-export">
+   Editing Slides Export
   </a>
  </li>
 </ul>
@@ -236,7 +251,47 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Setup</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prepare-working-environment">
+   Prepare Working Environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#additional-dependencies">
+     Additional Dependencies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#editing-jupyter-book-export">
+   Editing Jupyter Book Export
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#editing-slides-export">
+   Editing Slides Export
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="setup">
@@ -245,11 +300,17 @@
 <div class="section" id="prepare-working-environment">
 <h2>Prepare Working Environment<a class="headerlink" href="#prepare-working-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> - sets up virtual environment in <code class="docutils literal notranslate"><span class="pre">venv</span></code> directory and installs dependencies from <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> - sets up virtual environment in <code class="docutils literal notranslate"><span class="pre">.venv</span></code> directory and setups dependencies using <span class="xref myst">Poetry</span> config file <span class="xref myst">pyproject.toml</span>.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code></p></li>
 <li><p>Open default <a class="reference external" href="http://localhost:8888/lab">lab url</a></p></li>
 <li><p>Open notebook</p></li>
 </ol>
+<div class="section" id="additional-dependencies">
+<h3>Additional Dependencies<a class="headerlink" href="#additional-dependencies" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Install <a class="reference external" href="https://graphviz.org/">Graphviz</a> to be able to create images of decision trees.</p></li>
+</ol>
+</div>
 </div>
 <div class="section" id="editing-jupyter-book-export">
 <h2>Editing Jupyter Book Export<a class="headerlink" href="#editing-jupyter-book-export" title="Permalink to this headline">¶</a></h2>
@@ -258,7 +319,46 @@ jupyter-book build book/
 </pre></div>
 </div>
 <p>It is possible to setup <a class="reference external" href="http://eradman.com/entrproject/">entr</a> to get the book rebuild with every new .md or .ipynb file saved with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>find book -path book/_build -prune -false -o <span class="se">\(</span> -name <span class="s1">&#39;*.ipynb&#39;</span> -o -name <span class="s1">&#39;*.md&#39;</span> <span class="se">\)</span> <span class="p">|</span> entr jupyter-book build book
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+find book -path book/_build -prune -false -o <span class="se">\(</span> -name <span class="s1">&#39;*.ipynb&#39;</span> -o -name <span class="s1">&#39;*.md&#39;</span> <span class="se">\)</span> <span class="p">|</span> entr jupyter-book build book
+</pre></div>
+</div>
+<p>Or as simply as <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">develop</span></code>.</p>
+</div>
+<div class="section" id="editing-slides-export">
+<h2>Editing Slides Export<a class="headerlink" href="#editing-slides-export" title="Permalink to this headline">¶</a></h2>
+<p>We use [nbconvert] to prepare reveal.js slides.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+jupyter nbconvert <span class="se">\</span>
+    book/imlp/imlp_1_data.ipynb <span class="se">\</span>
+    book/imlp/imlp_2_modeling.ipynb <span class="se">\</span>
+    book/imlp/imlp_3_experiments.ipynb <span class="se">\</span>
+    book/imlp/imlp_4_deep_learning.ipynb <span class="se">\</span>
+    --to slides <span class="se">\</span>
+    --TagRemovePreprocessor.remove_cell_tags remove_cell <span class="se">\</span>
+    --TagRemovePreprocessor.remove_input_tags hide_input <span class="se">\</span>
+    --TagRemovePreprocessor.remove_all_outputs_tags hide_output
+</pre></div>
+</div>
+<p>Use following cell tags</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">remove_cell</span></code> to completely remove the cell (input and output) from the presentation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hide_input</span></code> to hide code cells but to show output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hide_output</span></code> to hide output of the cell.</p></li>
+</ul>
+<p>It is possible to setup <a class="reference external" href="http://eradman.com/entrproject/">entr</a> to get presentations rebuild with every new .md or .ipynb file saved with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>poetry shell
+find book -path book/_build -prune -false -o <span class="se">\(</span> -name <span class="s1">&#39;*.ipynb&#39;</span> -o -name <span class="s1">&#39;*.md&#39;</span> <span class="se">\)</span>
+    <span class="p">|</span> entr jupyter nbconvert <span class="se">\</span>
+        book/imlp/imlp_1_data.ipynb <span class="se">\</span>
+        book/imlp/imlp_2_modeling.ipynb <span class="se">\</span>
+        book/imlp/imlp_3_experiments.ipynb <span class="se">\</span>
+        book/imlp/imlp_4_deep_learning.ipynb <span class="se">\</span>
+        --to slides <span class="se">\</span>
+        --TagRemovePreprocessor.remove_cell_tags remove_cell <span class="se">\</span>
+        --TagRemovePreprocessor.remove_input_tags hide_input <span class="se">\</span>
+        --TagRemovePreprocessor.remove_all_outputs_tags hide_output
+        --no-prompt
 </pre></div>
 </div>
 </div>
@@ -286,45 +386,35 @@ jupyter-book build book/
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="imlp/imlp_4_deep_learning.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Deep Learning</p>
-            </div>
-        </a>
-    </div>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="imlp/imlp_4_deep_learning.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Deep Learning</p>
+        </div>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Ondra Zahradnik, Martin Neznal & Data Science Team at Avast<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Ondra Zahradnik, Martin Neznal & Data Science Team at Avast<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

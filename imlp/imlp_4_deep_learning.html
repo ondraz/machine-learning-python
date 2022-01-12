@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Deep Learning &#8212; Machine Learning in Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -57,7 +57,10 @@
     <link rel="next" title="Setup" href="../setup.html" />
     <link rel="prev" title="Experimenation" href="imlp_3_experiments.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -180,7 +183,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -231,7 +234,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -481,7 +484,260 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Deep Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#error-based-machine-learning">
+   Error-based Machine Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-regression">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Linear Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribution">
+     Attribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-and-loss">
+     Training and Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-loss-functions">
+     Error/Loss Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reducing-loss">
+     Reducing Loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent">
+     Gradient Descent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-rate">
+     Learning Rate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-rule-for-mse-and-linear-regression">
+     Update Rule for MSE and Linear Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gradient-descent-for-linear-regression">
+     Gradient Descent for Linear Regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimizers">
+     Optimizers
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stochastic-gradient-descent">
+       Stochastic Gradient Descent
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-and-non-linear-problems">
+     Linear and Non-Linear Problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-crosses-polynomials">
+     Feature Crosses &amp; Polynomials
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neural-networks">
+     Neural Networks
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#layers">
+       Layers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hidden-layers">
+       Hidden Layers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#activation-functions">
+       Activation Functions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tensorflow">
+   TensorFlow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#training">
+       Training
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-classification-of-mnist-dataset">
+     Image Classification of MNIST Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset">
+     Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activation-functions-for-classification">
+     Activation Functions for Classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sigmoid">
+       Sigmoid
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#softmax">
+       Softmax
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loss-functions-classification">
+     Loss Functions Classification
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cross-entropy-loss">
+       Cross-Entropy Loss
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#binary-classification">
+       Binary Classification
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multiclass-classification">
+       Multiclass Classification
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularization">
+     Regularization
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simplicity">
+       Simplicity
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sparsity">
+       Sparsity
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bias-variance-regularization">
+       Bias, Variance, Regularization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dropout">
+     Dropout
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-with-structured-data">
+   Training with Structured Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-columns">
+     Feature Columns
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numeric-columns">
+       Numeric columns
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#categorical-columns">
+       Categorical Columns
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#feature-crossees">
+       Feature Crossees
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#embeddings">
+     Embeddings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="deep-learning">
@@ -519,7 +775,7 @@
 <h2>Error-based Machine Learning<a class="headerlink" href="#error-based-machine-learning" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="linear-regression">
 <h3>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scatter plot with fitted linear regression</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./imlp4_files/auto-mpg.csv&#39;</span><span class="p">)</span>
@@ -599,7 +855,7 @@
 <p><em>Mean absolute error (MAE)</em> is the average absolute loss per example over the whole dataset.</p>
 <div class="math notranslate nohighlight">
 \[ \text{MAE} = \frac{1}{N} \sum_{(x, y) \in D}|y - \text{prediction}(x)| \]</div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># MSE and MAE</span>
 <span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
@@ -648,23 +904,17 @@
 <div class="section" id="gradient-descent">
 <h3>Gradient Descent<a class="headerlink" href="#gradient-descent" title="Permalink to this headline">¶</a></h3>
 <p>Having loss function convex with a global minimum, allows us to solve efficiently.</p>
-<table><tr>
-    <td><img src="./imlp4_files/convex.svg" /></td>
-    <td><img src="./imlp4_files/start.svg" /></td>
-</tr></table><table><tr>
-    <td><img src="./imlp4_files/step.svg" /></td>
-    <td><img src="./imlp4_files/step1.svg" /></td>
-</tr></table><img width="1000" src="https://miro.medium.com/max/2400/0*oqm7QVnI9-inFGCc.gif" />
+<p><img alt="" src="../_images/convex.png" /></p>
+<p><img alt="" src="../_images/step.png" /></p>
+<img width="1000" src="https://miro.medium.com/max/2400/0*oqm7QVnI9-inFGCc.gif" />
 <p><a class="reference external" href="https://towardsdatascience.com/a-look-at-gradient-descent-and-rmsprop-optimizers-f77d483ef08b">Rohith Gandhi A Look at Gradient Descent and RMSprop Optimizers</a></p>
 <img width="600" src="https://miro.medium.com/max/1120/0*G8a4jCsMLJ7xNQNt.png" />
 <p><a class="reference external" href="https://towardsdatascience.com/a-look-at-gradient-descent-and-rmsprop-optimizers-f77d483ef08b">Rohith Gandhi A Look at Gradient Descent and RMSprop Optimizers</a></p>
 </div>
 <div class="section" id="learning-rate">
 <h3>Learning Rate<a class="headerlink" href="#learning-rate" title="Permalink to this headline">¶</a></h3>
-<table><tr>
-    <td><img src="./imlp4_files/learning_rate.svg" /></td>
-    <td><img src="./imlp4_files/learning_rate_too_large.svg" /></td>
-</tr></table></div>
+<p><img alt="" src="../_images/learning_rate.png" /></p>
+</div>
 <div class="section" id="update-rule-for-mse-and-linear-regression">
 <h3>Update Rule for MSE and Linear Regression<a class="headerlink" href="#update-rule-for-mse-and-linear-regression" title="Permalink to this headline">¶</a></h3>
 <p>For MSE and linear regression of independent features <span class="math notranslate nohighlight">\(x\)</span> (matrix), target feature <span class="math notranslate nohighlight">\(y\)</span> (column vector), and MSE <span class="math notranslate nohighlight">\(J(w)\)</span>:</p>
@@ -680,7 +930,7 @@
 </div>
 <div class="section" id="gradient-descent-for-linear-regression">
 <h3>Gradient Descent for Linear Regression<a class="headerlink" href="#gradient-descent-for-linear-regression" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
     <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
@@ -694,7 +944,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 
@@ -710,7 +960,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)):</span>
     <span class="n">XX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">X_</span><span class="p">))</span> <span class="c1"># add column of ones to enable matrix multiplication</span>
@@ -725,7 +975,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot regressions and losses</span>
 
@@ -761,7 +1011,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_4_deep_learning_26_0.png" src="../_images/imlp_4_deep_learning_26_0.png" />
+<img alt="../_images/imlp_4_deep_learning_27_0.png" src="../_images/imlp_4_deep_learning_27_0.png" />
 </div>
 </div>
 </div>
@@ -788,13 +1038,14 @@
 </tr></table></div>
 <div class="section" id="feature-crosses-polynomials">
 <h3>Feature Crosses &amp; Polynomials<a class="headerlink" href="#feature-crosses-polynomials" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="../_images/cross.png" /></p>
 <p>One way to solve nonlinear problem is to create a <em>feature cross</em> or <em>feature polynomial</em>.</p>
 <ol class="simple">
 <li><p>Feature cross encodes nonlinearity by multiplying two or more features. Eg. <span class="math notranslate nohighlight">\(x_3 = x_1x_2\)</span>.</p></li>
 <li><p>Feature polynomial encodes nonlinearity by taking polynomial of feature. Eg. <span class="math notranslate nohighlight">\(x_4 = x_1^2\)</span>.</p></li>
 </ol>
 <p>Another way is to use neural nets.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># higher-order polynomials in linear regression</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
@@ -836,7 +1087,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_4_deep_learning_34_0.png" src="../_images/imlp_4_deep_learning_34_0.png" />
+<img alt="../_images/imlp_4_deep_learning_35_0.png" src="../_images/imlp_4_deep_learning_35_0.png" />
 </div>
 </div>
 </div>
@@ -845,11 +1096,12 @@
 <div class="section" id="layers">
 <h4>Layers<a class="headerlink" href="#layers" title="Permalink to this headline">¶</a></h4>
 <p>We can represent linear model as input layery with output layer. Each blue circle represents one feature value, output unit computes weighted sum of the inputs.</p>
-<img width="300" src="./imlp4_files/linear_model.png" /></div>
+<p><img alt="" src="../_images/linear_model.png" /></p>
+</div>
 <div class="section" id="hidden-layers">
 <h4>Hidden Layers<a class="headerlink" href="#hidden-layers" title="Permalink to this headline">¶</a></h4>
 <p>To improve model ability to solve nonlinear problems, we can add hidden layer or layers. Each yellow unit in hidden layer is a weighted sum of the blue input unit values.</p>
-<img width="500" src="./imlp4_files/hidden_layers1.png" />
+<p><img alt="" src="../_images/hidden_layers1.png" /></p>
 <p>This is stil calculating linear combination of inputs thus it is still linear model.</p>
 </div>
 <div class="section" id="activation-functions">
@@ -861,7 +1113,7 @@
 <li><p>Fast to compute.</p></li>
 <li><p>Non-zero derivatives.</p></li>
 </ol>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># activation functions</span>
 <span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
@@ -922,7 +1174,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_4_deep_learning_40_0.png" src="../_images/imlp_4_deep_learning_40_0.png" />
+<img alt="../_images/imlp_4_deep_learning_41_0.png" src="../_images/imlp_4_deep_learning_41_0.png" />
 </div>
 </div>
 <p><a id="tf"></a></p>
@@ -933,7 +1185,7 @@
 <h2>TensorFlow<a class="headerlink" href="#tensorflow" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id2">
 <h3>Linear Regression<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
 
@@ -1026,7 +1278,7 @@ Epoch 10/10
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scatter for predicted vs true values</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -1043,7 +1295,7 @@ Epoch 10/10
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_4_deep_learning_49_0.png" src="../_images/imlp_4_deep_learning_49_0.png" />
+<img alt="../_images/imlp_4_deep_learning_50_0.png" src="../_images/imlp_4_deep_learning_50_0.png" />
 </div>
 </div>
 </div>
@@ -1058,7 +1310,7 @@ Epoch 10/10
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># handwritten digits</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
@@ -1073,7 +1325,7 @@ Epoch 10/10
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_4_deep_learning_52_0.png" src="../_images/imlp_4_deep_learning_52_0.png" />
+<img alt="../_images/imlp_4_deep_learning_53_0.png" src="../_images/imlp_4_deep_learning_53_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1109,6 +1361,7 @@ Epoch 10/10
 </div>
 </div>
 </div>
+<p>Setting up model layers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
@@ -1153,7 +1406,8 @@ Epoch 10/10
 <div class="section" id="binary-classification">
 <h4>Binary Classification<a class="headerlink" href="#binary-classification" title="Permalink to this headline">¶</a></h4>
 <p>In a binary classification problem where <span class="math notranslate nohighlight">\(C = 2\)</span>, the cross-entropy loss can be defined also as:</p>
-<img width="600" src="./imlp4_files/sigmoid.png" /><div class="math notranslate nohighlight">
+<p><img alt="" src="../_images/sigmoid.png" /></p>
+<div class="math notranslate nohighlight">
 \[ \text{CE} = -\sum_i^Ct_i\log(s_i) = - t_1\log(s_1) + (1-t_1)\log(1-s_1) \]</div>
 <p>This log loss function is also called <em>binary cross-entropy loss</em>.</p>
 </div>
@@ -1161,11 +1415,12 @@ Epoch 10/10
 <h4>Multiclass Classification<a class="headerlink" href="#multiclass-classification" title="Permalink to this headline">¶</a></h4>
 <p>Classification of instances into more than 2 classes when one instance could be in one class only is called <em>multiclass classification</em>. Compare with <em>multilabel classification</em> when one instance could be in more than one class.</p>
 <p>We use softmax activation plus a cross-entropy loss.</p>
-<img width="600" src="./imlp4_files/softmax.png" /><div class="math notranslate nohighlight">
+<p><img alt="" src="../_images/softmax.png" /></p>
+<div class="math notranslate nohighlight">
 \[ f(s)_i = \frac{e^{s_i}}{\sum_j^C e^{s_j}} \ \ \text{CE} = -\sum_i^Ct_i\log(f(s)_i) = -\log\frac{e^{s_p}}{\sum_j^C e^{s_j}} \]</div>
-<img width="600" src="./imlp4_files/mnist1.png" />
+<p><img alt="" src="../_images/mnist1.png" /></p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=aircAruvnKk&amp;feature=youtu.be&amp;t=469">But what is a Neural Network? | Deep learning, chapter 1</a></p>
-<img width="600" src="./imlp4_files/mnist2.png" />
+<p><img alt="" src="../_images/mnist2.png" /></p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=aircAruvnKk&amp;feature=youtu.be&amp;t=469">But what is a Neural Network? | Deep learning, chapter 1</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1236,7 +1491,7 @@ Loss: 0.104, accuracy: 0.980
 </div>
 <div class="section" id="regularization">
 <h3>Regularization<a class="headerlink" href="#regularization" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparing L1 and L2 regularization </span>
 
@@ -1292,7 +1547,7 @@ Loss: 0.104, accuracy: 0.980
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_4_deep_learning_73_0.png" src="../_images/imlp_4_deep_learning_73_0.png" />
+<img alt="../_images/imlp_4_deep_learning_76_0.png" src="../_images/imlp_4_deep_learning_76_0.png" />
 </div>
 </div>
 <div class="section" id="simplicity">
@@ -2037,67 +2292,55 @@ Recall: 0.54
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "mlp"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "mlp",
+            kernelName: "machine-learning-python",
             path: "./imlp"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'mlp'</script>
+    <script>kernelName = 'machine-learning-python'</script>
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="imlp_3_experiments.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Experimenation</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="imlp_3_experiments.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Experimenation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../setup.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setup</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="../setup.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Setup</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Ondra Zahradnik, Martin Neznal & Data Science Team at Avast<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Ondra Zahradnik, Martin Neznal & Data Science Team at Avast<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

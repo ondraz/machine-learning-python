@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modeling and Evaluation &#8212; Machine Learning in Python</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
@@ -57,7 +57,10 @@
     <link rel="next" title="Experimenation" href="imlp_3_experiments.html" />
     <link rel="prev" title="Data" href="imlp_1_data.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -180,7 +183,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -231,13 +234,18 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steps-in-almost-every-modeling-problem">
+   Steps in “Almost Every” Modeling Problem
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#machine-learning">
    Machine Learning
@@ -246,6 +254,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ml-pipeline">
      ML Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparation">
+     Preparation
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -291,8 +304,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prediction-scores-thresholds-and-curves">
-     Prediction Scores, Thresholds, and Curves
+    <a class="reference internal nav-link" href="#distribution-of-prediction-scores-and-thresholds">
+     Distribution of Prediction Scores and Thresholds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roc-and-curves">
+     ROC and Curves
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -474,12 +492,274 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modeling and Evaluation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#steps-in-almost-every-modeling-problem">
+   Steps in “Almost Every” Modeling Problem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning">
+   Machine Learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ml-pipeline">
+     ML Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparation">
+     Preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-ml-pipeline">
+     Build ML Pipeline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decision-tree-model">
+     Decision Tree Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sanity-check-on-imputation">
+     Sanity Check On Imputation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluate">
+   Evaluate
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confusion-matrix-based-evaluation-metrics">
+     Confusion Matrix-based Evaluation Metrics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#precision-recall-f1-score">
+     Precision, Recall, F1-score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#average-class-accuracy">
+     Average Class Accuracy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rates">
+     Rates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distribution-of-prediction-scores-and-thresholds">
+     Distribution of Prediction Scores and Thresholds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#roc-and-curves">
+     ROC and Curves
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction-errors">
+     Prediction Errors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bias-and-variance">
+     Bias and Variance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bias-variance-tradeoff">
+     Bias, Variance Tradeoff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ensembles-ways-to-handle-bias-variance-threshold">
+     Ensembles - Ways to Handle Bias, Variance Threshold
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bagging">
+       Bagging
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boosting">
+       Boosting
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacking">
+       Stacking
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gain-lift">
+     Gain &amp; Lift
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gain">
+     Gain
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lift">
+     Lift
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-curve">
+     Learning Curve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyper-parameter-tuning">
+     Hyper-parameter Tuning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacking-more-models-and-grid-search">
+       Stacking More Models and Grid Search
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cross-validation">
+     Cross-validation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insights-explanations">
+   Insights &amp; Explanations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-selection-importance">
+     Feature Selection &amp; Importance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#univariate-selection">
+     Univariate Selection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#select-features-from-simple-model">
+     Select Features from Simple Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-importance">
+     Feature Importance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-as-a-blackbox-explain-single-prediction">
+     Model as a Blackbox, Explain Single Prediction
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lime-local-interpretable-model">
+       Lime - Local Interpretable Model
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shapley-values-shapley-additive-explanations">
+       Shapley Values (SHapley Additive exPlanations)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#aggregated-shapley-values">
+       Aggregated Shapley Values
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-technology-to-use">
+   What Technology to Use
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#impact-of-data-size-and-model-complexity">
+     Impact of Data Size and Model Complexity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sharing-knowledge-in-team">
+   Sharing Knowledge in Team
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-monitor">
+   Deploy &amp; Monitor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-index">
+     Stability Index
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#keep-training-and-production-environments-same">
+   Keep Training and Production Environments Same
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelrunner-abstraction">
+     ModelRunner Abstraction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="section" id="modeling-and-evaluation">
 <h1>Modeling and Evaluation<a class="headerlink" href="#modeling-and-evaluation" title="Permalink to this headline">¶</a></h1>
-<p>Steps in “almost every” modeling problem:</p>
+<div class="section" id="steps-in-almost-every-modeling-problem">
+<h2>Steps in “Almost Every” Modeling Problem<a class="headerlink" href="#steps-in-almost-every-modeling-problem" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="#learning">Machine Learning</a></p></li>
 <li><p><a class="reference external" href="#evaluate">Evaluate &amp; Tune</a></p></li>
@@ -490,29 +770,47 @@
 <li><p><a class="reference external" href="#production">Keep Training &amp; Production Environments Same</a></p></li>
 </ol>
 <p><a id="learning"></a></p>
+</div>
 <div class="section" id="machine-learning">
 <h2>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h2>
 <p><img alt="Machine Learning 2" src="../_images/machine_learning_2.png" /></p>
 <p>Supervised machine learning can be stated as follows. Find “the best” function <span class="math notranslate nohighlight">\(f\)</span> that given set of <span class="math notranslate nohighlight">\(M\)</span> descriptive features and <span class="math notranslate nohighlight">\(N\)</span> instances of data <span class="math notranslate nohighlight">\(X_{11}, ..., X_{NM}\)</span> returns values of target feature <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[ f(X_{i1}, ..., X_{iM}) = y_i \text{ for i} \in [1,N] \]</div>
-<p>The model to find is the unknown function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>The model is the unknown function <span class="math notranslate nohighlight">\(f\)</span>.</p>
 <div class="section" id="ml-pipeline">
 <h3>ML Pipeline<a class="headerlink" href="#ml-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>It is very useful to define complete machine learning pipeline in a declarative way using some higher-level stages (primitives) like transformers, estimators, and pipelines. Some advantages:</p>
 <ol class="simple">
-<li><p>Any data transformation has to be “recorded” and replicated at all places where modeling happends (at least training and predicting).</p></li>
-<li><p>Stages could be tested in isolation and reused among multiple ml pipelines.</p></li>
-<li><p>Transformations applied are easy to read when described declaratively than programatically eg. using pandas df opps.</p></li>
+<li><p>Any data transformation has to be “recorded” and replicated at all places where modeling happends (at least in training and inference - prediction phases).</p></li>
+<li><p>Stages could be tested in isolation and reused among multiple ML pipelines.</p></li>
+<li><p>Transformations applied are easier to read when described declaratively than programatically. Imagine cumbersome pandas operations we used in the <a class="reference internal" href="imlp_1_data.html"><span class="doc std std-doc">previous chapter</span></a>.</p></li>
 </ol>
-<img src="./imlp2_images/simple_pipeline.png" width="700" /><p>We split our dataset into train and test (holdout) datasets, we train on training data and evaluate model perfomance on unseen test dataset to simulate reality and to prevent overfitting of the model.</p>
-<p>We replicate most of data transformations described in previous lecture using sklearn transformers.</p>
-<div class="cell docutils container">
+<p>Example ML pipeline we are going to build for our Australian weather predction problem. Every input feature passes through one or more transformers to create all-numerical input features for the decision tree model. Some new feature-engineered features require more than one feature as their input.</p>
+<p><img alt="" src="../_images/simple_pipeline.png" /></p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import some basic libraries to do analysis and ML</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sk</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Visualization details</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">py</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">machine_learning_python</span> <span class="k">as</span> <span class="nn">mlp</span>
+
+<span class="n">png_renderer</span> <span class="o">=</span> <span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="p">[</span><span class="s1">&#39;png&#39;</span><span class="p">]</span>
+<span class="n">png_renderer</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">png_renderer</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">800</span>
+<span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span>
+
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">pylab</span>
@@ -530,11 +828,15 @@
 </div>
 </div>
 </div>
-<p>Do basic preprocessing of available data. It makes sense to apply these transformations everywhere where we plan to use the model. ‘No’s and ‘Yes’s are better understood as zeros and ones.</p>
-<div class="cell docutils container">
+</div>
+<div class="section" id="preparation">
+<h3>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">¶</a></h3>
+<p>We split our dataset into train and test (holdout) datasets, we train on training dataset and evaluate model perfomance on unseen test dataset to simulate reality and to prevent overfitting of the model.</p>
+<p>We replicate most of data transformations described in <a class="reference internal" href="imlp_1_data.html"><span class="doc std std-doc">previous chapter</span></a>. This time we are going to replace pandas opperation with an scikit-learn transformer to build reusable ML pipeline. Features and transformers in the pipeline ensure that we can reuse the pipeline in training and inference stages and we can let the pipeline to replicate all data wrangling.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read data from local .csv file and do basic preprocessing that makes sense to do everywhere</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;weatherAUS.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/weatherAUS.csv&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;RainToday&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;RainToday&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;RainTomorrow&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;RainTomorrow&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;DateD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Date</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -585,9 +887,12 @@
 </div>
 </div>
 </div>
-<p>We map input columns (features) from data frame to the input of model. All sklearn models require only numerical data as input, we impute missing values and add few basic transformations to test.</p>
-<p>Imputing without any further transformations:</p>
-<div class="cell docutils container">
+</div>
+<div class="section" id="build-ml-pipeline">
+<h3>Build ML Pipeline<a class="headerlink" href="#build-ml-pipeline" title="Permalink to this headline">¶</a></h3>
+<p>We build (name, transformer, columns) tuples mapping features represented as pandas columns using transformers into input scikit model features using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html">ColumnTransformer</a>.</p>
+<p>We also impute missing values using scikit transfromers and we add few basic new transformations to test.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PowerTransformer</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">FunctionTransformer</span>
 <span class="kn">from</span> <span class="nn">sklearn.experimental</span> <span class="kn">import</span> <span class="n">enable_iterative_imputer</span>
@@ -598,21 +903,15 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="build-ml-pipeline">
-<h3>Build ML Pipeline<a class="headerlink" href="#build-ml-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>First, we have to impute using different strategies based on our EDA.</p>
+<p>We keep indicator column (feature) for every feature with a lot of missing values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We keep indicator for features with a lot of missing values.&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>We keep indicator for features with a lot of missing values.
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sunshine       67816
 Evaporation    60843
 Cloud3pm       57094
@@ -622,34 +921,32 @@ dtype: int64
 </div>
 </div>
 </div>
+<p>Building <code class="docutils literal notranslate"><span class="pre">(name,</span> <span class="pre">transformer,</span> <span class="pre">columns)</span></code> tuples for <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html">ColumnTransformer</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ff</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cloud9am&#39;</span><span class="p">,</span> <span class="s1">&#39;Cloud3pm&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># list of ColumnTransformer tuples</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">ff</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Cloud3pm&#39;</span><span class="p">,</span> <span class="s1">&#39;Cloud9am&#39;</span><span class="p">]</span>
 <span class="n">features</span> <span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;~indicator1&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">add_indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">ff</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Mean or median by number of outliers in features.</p>
-<div class="cell docutils container">
+<p>We impute mean or median by number of outliers in features.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># boxplots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># boxplots to see outliers and overall distribution</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Temp3pm&#39;</span><span class="p">,</span> <span class="s1">&#39;Evaporation&#39;</span><span class="p">,</span> <span class="s1">&#39;Humidity9am&#39;</span><span class="p">]</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cols</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Location&#39;</span><span class="p">]],</span> <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Location&#39;</span><span class="p">],</span> <span class="n">value_vars</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;v&#39;</span><span class="p">);</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">facet_col</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="s1">&#39;outliers&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">matches</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">showticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">matches</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">showticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_18_0.png" src="../_images/imlp_2_modeling_18_0.png" />
+<img alt="../_images/imlp_2_modeling_19_0.png" src="../_images/imlp_2_modeling_19_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -666,20 +963,19 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>Median for numerical features with only few values and constant 0 (zero) where it makes sense.</p>
-<div class="cell docutils container">
+<p>We impute median for numerical features with only few values and constant 0 (zero) where it makes sense.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;RainDaysWeek&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;RainTomorrow&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;DaysSinceRainWeek&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;RainTomorrow&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">mlp</span><span class="o">.</span><span class="n">eda_categorical</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;RainTomorrow&#39;</span><span class="p">,</span> <span class="n">max_categorical_values</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">variable</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;RainDaysWeek&#39;</span><span class="p">,</span> <span class="s1">&#39;DaysSinceRainWeek&#39;</span><span class="p">])],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">error_y</span><span class="o">=</span><span class="s1">&#39;ci&#39;</span><span class="p">,</span> <span class="n">facet_col</span><span class="o">=</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
+       <span class="n">facet_col_wrap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+       <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="s1">&#39;RainTomorrow&#39;</span><span class="p">})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">matches</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">showticklabels</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_21_0.png" src="../_images/imlp_2_modeling_21_0.png" />
+<img alt="../_images/imlp_2_modeling_22_0.png" src="../_images/imlp_2_modeling_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -695,22 +991,39 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>Functional transformations to fix long tails.</p>
-<div class="cell docutils container">
+<p>Functional transformations fix long tails in features.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Rainfall</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">WindGustSpeed</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">WindSpeed9am</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
+<span class="kn">import</span> <span class="nn">plotly.figure_factory</span> <span class="k">as</span> <span class="nn">fac</span>
+
+<span class="c1"># example of long-tailed distribution</span>
+<span class="n">d0</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rainfall&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WindGustSpeed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;WindSpeed9am&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="n">png_renderer</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shared_xaxes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shared_yaxes</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fx1</span> <span class="o">=</span> <span class="n">fac</span><span class="o">.</span><span class="n">create_distplot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">d0</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">],</span>
+    <span class="n">curve_type</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span>
+    <span class="n">bin_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">show_hist</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_rug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_curve</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Rainfall&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">fx1</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">fx1</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;WindGustSpeed&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">fx1</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">fx1</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;WindSpeed9am&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">fx1</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">fx1</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;WindGustSpeed&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">title_text</span><span class="o">=</span><span class="s2">&quot;WindSpeed9am&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_24_0.png" src="../_images/imlp_2_modeling_24_0.png" />
+<img alt="../_images/imlp_2_modeling_25_0.png" src="../_images/imlp_2_modeling_25_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -755,7 +1068,8 @@ dtype: int64
 </div>
 </div>
 </div>
-<p>We randomly split dataset into training and testing datasets and separate column with target labels. We use training dataset to train the model and then we evaluate performance metrics of the model on testing (holdout, validation) dataset that model was not exposed to during training. This prevents overfitting and provides fairer evaluation of model performance closer to performance we can expect on production data.</p>
+<p>We randomly split dataset into training and testing datasets and separate column with target labels.</p>
+<p>We use training dataset to train the model and then we evaluate performance metrics of the model on testing (holdout, validation) dataset that model was not exposed to during training. This prevents overfitting and provides fairer evaluation of model performance closer to performance we can expect on production data.</p>
 <p>Other schemas to prevent overfitting of the model like <span class="math notranslate nohighlight">\(k\)</span>-fold cross-validation are also possible and are discussed below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,7 +1091,7 @@ dtype: int64
 <h3>Decision Tree Model<a class="headerlink" href="#decision-tree-model" title="Permalink to this headline">¶</a></h3>
 <p>Decision tree is one of the simplest models that we can use. In every node, it tries to find the feature and its threshold value that splits remaining dataset into classes in the best way until the remaining dataset contains only one class or its size is below some threshold.</p>
 <p>Decision trees naturally handle missing data, work with categorical features, and do not require transformations of input features. Although working with missing data and categorical features are not supported in scikit-learn.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
@@ -804,8 +1118,8 @@ dtype: int64
 
               precision    recall  f1-score   support
 
-           0       0.82      0.98      0.89     33117
-           1       0.80      0.27      0.40      9541
+           0       0.82      0.98      0.89     33114
+           1       0.80      0.26      0.40      9544
 
     accuracy                           0.82     42658
    macro avg       0.81      0.62      0.65     42658
@@ -814,7 +1128,7 @@ weighted avg       0.82      0.82      0.78     42658
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Little magic to get to meaningful feature names after ColumnTransformer step.</span>
 <span class="c1"># Mind that we combine multiple feature columns to engineer new feature or we use OHE</span>
@@ -852,13 +1166,16 @@ weighted avg       0.82      0.82      0.78     42658
                              
 <span class="n">ct</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
 <span class="n">x_train_trans</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_train_trans</span> <span class="o">=</span> <span class="n">y_train</span>
 <span class="n">x_test_trans</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">y_test_trans</span> <span class="o">=</span> <span class="n">y_test</span>
 <span class="n">fs</span> <span class="o">=</span> <span class="n">get_feature_names</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<p>This decistion tree is very shallow, we can plot it easily with Graphviz.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot decision tree rules</span>
 
@@ -873,10 +1190,11 @@ weighted avg       0.82      0.82      0.78     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_38_0.png" src="../_images/imlp_2_modeling_38_0.png" />
+<img alt="../_images/imlp_2_modeling_41_0.png" src="../_images/imlp_2_modeling_41_0.png" />
 </div>
 </div>
-<div class="cell docutils container">
+<p>Let’s allow the tree to grow to depth of 6. It helps with a recall on class 1.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt_model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
                      <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">))])</span>
@@ -892,17 +1210,36 @@ weighted avg       0.82      0.82      0.78     42658
 
               precision    recall  f1-score   support
 
-           0       0.86      0.94      0.90     33117
-           1       0.69      0.48      0.57      9541
+           0       0.86      0.95      0.90     33114
+           1       0.71      0.46      0.56      9544
 
     accuracy                           0.84     42658
-   macro avg       0.78      0.71      0.73     42658
-weighted avg       0.82      0.84      0.83     42658
+   macro avg       0.79      0.70      0.73     42658
+weighted avg       0.83      0.84      0.82     42658
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<p>Now the tree is much bigger.</p>
+<div class="cell tag_hide_input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot decision tree rules</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">export_graphviz</span>
+<span class="kn">import</span> <span class="nn">pydotplus</span>
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">export_graphviz</span><span class="p">(</span><span class="n">dt_model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;clf&#39;</span><span class="p">],</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="s1">&#39;Yes&#39;</span><span class="p">],</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">pydotplus</span><span class="o">.</span><span class="n">graph_from_dot_data</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">create_png</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/imlp_2_modeling_45_0.png" src="../_images/imlp_2_modeling_45_0.png" />
+</div>
+</div>
+<p>Let’s try different model <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">KNeighborsClassifier</a> for a comparison.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 <span class="n">nn_model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
@@ -920,37 +1257,20 @@ weighted avg       0.82      0.84      0.83     42658
 
               precision    recall  f1-score   support
 
-           0       0.80      0.97      0.88     33062
-           1       0.61      0.19      0.28      9596
+           0       0.80      0.97      0.88     33114
+           1       0.60      0.18      0.28      9544
 
     accuracy                           0.79     42658
-   macro avg       0.71      0.58      0.58     42658
+   macro avg       0.70      0.57      0.58     42658
 weighted avg       0.76      0.79      0.74     42658
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot decision tree rules</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">export_graphviz</span>
-<span class="kn">import</span> <span class="nn">pydotplus</span>
-<span class="n">dot_data</span> <span class="o">=</span> <span class="n">export_graphviz</span><span class="p">(</span><span class="n">dt_model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;clf&#39;</span><span class="p">],</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="s1">&#39;Yes&#39;</span><span class="p">],</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="n">pydotplus</span><span class="o">.</span><span class="n">graph_from_dot_data</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">create_png</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_41_0.png" src="../_images/imlp_2_modeling_41_0.png" />
-</div>
-</div>
 </div>
 <div class="section" id="sanity-check-on-imputation">
 <h3>Sanity Check On Imputation<a class="headerlink" href="#sanity-check-on-imputation" title="Permalink to this headline">¶</a></h3>
-<p>It is worth to check if we introduced some noice when doing imputation by testing the same algorithm on data where we drop all rows with any missing value.</p>
+<p>It is worth to check if we introduced some noice when doing imputation by testing the same algorithm on data where we drop all rows with any missing value. We build our pipeline without imputers and drop all rows with missing values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_no_imp</span> <span class="o">=</span> <span class="p">[]</span>
@@ -967,17 +1287,18 @@ weighted avg       0.76      0.79      0.74     42658
 
 <span class="n">ff</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WindGustDir&#39;</span><span class="p">,</span> <span class="s1">&#39;WindDir9am&#39;</span><span class="p">,</span> <span class="s1">&#39;WindDir3pm&#39;</span><span class="p">,</span> <span class="s1">&#39;Location&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="s1">&#39;YearMonth&#39;</span><span class="p">]</span>
 <span class="n">features_no_imp</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">f</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">categories</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">),</span> <span class="p">[</span><span class="n">f</span><span class="p">])</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ff</span><span class="p">]</span>
+
+<span class="n">df_no_na</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train and evaluate decision tree</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features_no_imp</span><span class="p">)),</span>
               <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">6</span><span class="p">))])</span>
 
-<span class="n">df_no_na</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
 <span class="n">xtr</span><span class="p">,</span> <span class="n">ytr</span><span class="p">,</span> <span class="n">xte</span><span class="p">,</span> <span class="n">yte</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">df_no_na</span><span class="p">,</span> <span class="s1">&#39;RainTomorrow&#39;</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">xtr</span><span class="p">,</span> <span class="n">ytr</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xte</span><span class="p">)))</span>
@@ -987,12 +1308,12 @@ weighted avg       0.76      0.79      0.74     42658
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-           0       0.87      0.95      0.91     12892
-           1       0.73      0.47      0.57      3574
+           0       0.86      0.96      0.91     12880
+           1       0.75      0.43      0.55      3586
 
-    accuracy                           0.85     16466
-   macro avg       0.80      0.71      0.74     16466
-weighted avg       0.84      0.85      0.83     16466
+    accuracy                           0.84     16466
+   macro avg       0.81      0.69      0.73     16466
+weighted avg       0.84      0.84      0.83     16466
 </pre></div>
 </div>
 </div>
@@ -1004,7 +1325,7 @@ weighted avg       0.84      0.85      0.83     16466
 <h2>Evaluate<a class="headerlink" href="#evaluate" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="confusion-matrix-based-evaluation-metrics">
 <h3>Confusion Matrix-based Evaluation Metrics<a class="headerlink" href="#confusion-matrix-based-evaluation-metrics" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># confusion matrix</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
@@ -1028,27 +1349,26 @@ weighted avg       0.84      0.85      0.83     16466
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision: 0.69, recall: 0.48 on class 1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Precision: 0.71, recall: 0.46 on class 1
 </pre></div>
 </div>
-<img alt="../_images/imlp_2_modeling_47_1.png" src="../_images/imlp_2_modeling_47_1.png" />
+<img alt="../_images/imlp_2_modeling_54_1.png" src="../_images/imlp_2_modeling_54_1.png" />
 </div>
 </div>
-<p>Wikipedia article about <a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">presion and recall</a> has a perfect matrix describing various metrics that we can obrain from confusion matrix.</p>
-<p><a href="https://en.wikipedia.org/wiki/Precision_and_recall"><img src="./imlp2_images/precision_recall.png" width="1000" /></a></p>
 </div>
 <div class="section" id="precision-recall-f1-score">
 <h3>Precision, Recall, F1-score<a class="headerlink" href="#precision-recall-f1-score" title="Permalink to this headline">¶</a></h3>
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png" height="300"></center>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">Wikipedia</a></p>
-<div style="float: left;">
-$$ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
+<p>Wikipedia article about <a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">presion and recall</a> has a perfect matrix describing various metrics that we can obrain from confusion matrix.</p>
+<p><img alt="" src="../_images/precision_recall.png" /></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">Link</a></p>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png" /></p>
 <div class="math notranslate nohighlight">
-\[ \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}\]</div>
+\[ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}} \]</div>
 <div class="math notranslate nohighlight">
-\[ \text{F1-score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}\]</div>
-</div>
-<div style="float: right;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png" height="300"></div><p>Precision, recall, and f1-score are other commonly used metrics.</p>
+\[ \text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}} \]</div>
+<div class="math notranslate nohighlight">
+\[ \text{F1-score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} \]</div>
+<p>Precision, recall, and f1-score are other commonly used metrics.</p>
 <ol class="simple">
 <li><p><strong>Precision</strong> tells us how often when the models does positive prediction it is trully positive example.</p></li>
 <li><p><strong>Recall</strong> (also sensitivity and TPR) tells us how confident we can be that the model identified trully positive examples as positive.</p></li>
@@ -1074,7 +1394,7 @@ $$ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average class accuracy: 0.71
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average class accuracy: 0.7
 </pre></div>
 </div>
 </div>
@@ -1088,12 +1408,14 @@ $$ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
 <div class="math notranslate nohighlight">
 \[\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}}, \text{ }\text{FNR} = \frac{\text{FN}}{\text{FN} + \text{TP}}\]</div>
 </div>
-<div class="section" id="prediction-scores-thresholds-and-curves">
-<h3>Prediction Scores, Thresholds, and Curves<a class="headerlink" href="#prediction-scores-thresholds-and-curves" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="section" id="distribution-of-prediction-scores-and-thresholds">
+<h3>Distribution of Prediction Scores and Thresholds<a class="headerlink" href="#distribution-of-prediction-scores-and-thresholds" title="Permalink to this headline">¶</a></h3>
+<p>Many models do not output predicted class directly. They return prediction score that is thresholded to get predicted class as a output. Eg. logistic regression returns probability for positive class that is thresholded by <span class="math notranslate nohighlight">\(0.5\)</span>, decision tree returns probability of majority class, naive bayes returns maximum posterior probability.</p>
+<p>Checking how much distribution of scores for different classes overlap, gives some additional insight into model performance. We can also evaluate metrics like precision and recall for different thresholds to visualize their tradeoff.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># distribution of predictions</span>
-<span class="n">y_score</span> <span class="o">=</span> <span class="n">ada_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">y_score</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictions&#39;</span><span class="p">)</span>
@@ -1110,14 +1432,15 @@ $$ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_59_0.png" src="../_images/imlp_2_modeling_59_0.png" />
+<img alt="../_images/imlp_2_modeling_69_0.png" src="../_images/imlp_2_modeling_69_0.png" />
 </div>
 </div>
-<p>Many models do not output predicted class directly. They return prediction score that is thresholded to get predicted class as a output. Eg. logistic regression returns probability for positive class that is thresholded by <span class="math notranslate nohighlight">\(0.5\)</span>, decision tree returns probability of majority class, naive bayes returns maximum posterior probability.</p>
-<p>Checking how much distribution of scores for different classes overlap, gives some additional insight into model performance. We can also evaluate metrics like precision and recall for different thresholds to visualize their tradeoff.</p>
+</div>
+<div class="section" id="roc-and-curves">
+<h3>ROC and Curves<a class="headerlink" href="#roc-and-curves" title="Permalink to this headline">¶</a></h3>
 <p><em>ROC curve</em> shows TPR (aka. sensitivity or recall) against FPR (1 - specificity). As threshold increases, TPR decreases (because we classify less and less as 1) and TNR increases (because we classify more and more as 0). FPR is (1 - TNR).</p>
 <p><em>Precision vs Recall curve</em> helps us to find sweet spot (threshold) to optimize model predictions for class 1. We can see that moving decision threshold to around <span class="math notranslate nohighlight">\(0.495\)</span> improves F1-score (on class 1) to <span class="math notranslate nohighlight">\(0.63\)</span> while it was <span class="math notranslate nohighlight">\(0.59\)</span> when using default threshold of <span class="math notranslate nohighlight">\(0.5\)</span>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># roc, precision, recall, fscore based on thresholds</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">precision_recall_curve</span>
@@ -1154,7 +1477,7 @@ $$ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Score&#39;</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f_score</span><span class="p">,</span> <span class="n">thresholds</span>
 
-<span class="n">y_score</span> <span class="o">=</span> <span class="n">ada_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">y_score</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
   
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1168,11 +1491,11 @@ $$ \text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$$
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max F1 on testing data (class 1) 0.64 with threshold 0.506
-AUC on testing data (class 1) 0.87
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max F1 on testing data (class 1) 0.59 with threshold 0.286
+AUC on testing data (class 1) 0.84
 </pre></div>
 </div>
-<img alt="../_images/imlp_2_modeling_61_1.png" src="../_images/imlp_2_modeling_61_1.png" />
+<img alt="../_images/imlp_2_modeling_72_1.png" src="../_images/imlp_2_modeling_72_1.png" />
 </div>
 </div>
 </div>
@@ -1184,33 +1507,22 @@ AUC on testing data (class 1) 0.87
 <div class="section" id="bias-and-variance">
 <h3>Bias and Variance<a class="headerlink" href="#bias-and-variance" title="Permalink to this headline">¶</a></h3>
 <p><em>Bias</em> - average prediction error, <em>Variance</em> - spread in predictions.</p>
-<img width="300" src="./imlp2_images/bull.png" />
+<p><img alt="" src="../_images/bull.png" /></p>
 <p><a class="reference external" href="https://towardsdatascience.com/understanding-the-bias-variance-tradeoff-165e6942b229">Seema Singh, Understanding the Bias-Variance Tradeoff</a></p>
 </div>
 <div class="section" id="bias-variance-tradeoff">
 <h3>Bias, Variance Tradeoff<a class="headerlink" href="#bias-variance-tradeoff" title="Permalink to this headline">¶</a></h3>
-<img width="600" src="./imlp2_images/bias_variance.png" />
+<p><img alt="" src="../_images/bias_variance.png" /></p>
 <p><a class="reference external" href="https://towardsdatascience.com/ensemble-methods-bagging-boosting-and-stacking-c9214a10a205">Joseph Rocca, Ensemble methods: bagging, boosting and stacking</a></p>
 <p>Single decision tree performance is good enough to get some insights into features driving predictions but is rearly optimal. Decision tree tend to grow very deep and do not generalize well on unseen data. They have low bias but high variance.</p>
 </div>
 <div class="section" id="ensembles-ways-to-handle-bias-variance-threshold">
 <h3>Ensembles - Ways to Handle Bias, Variance Threshold<a class="headerlink" href="#ensembles-ways-to-handle-bias-variance-threshold" title="Permalink to this headline">¶</a></h3>
 <p>Ensemble Learning - Bagging, Boosting, Stacking</p>
-<img src="./imlp2_images/ensemble.png" width="800" /><p>We can achieve better performace by using ensemble methods that help us trade variance for bias and vice versa. These methods usually train multiple weak (shallow) decision trees making a forrest out of them. Prediction of multiple models in ensemble is then usually a average of predictions from trees or a maximum.</p>
-<div class="section" id="bagging">
-<h4>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h4>
-<p>In <em>bagging</em>, we train multiple weak decision trees on subsets of data bootstrapped from the dataset. We average their predictions. Avaraging of predictions from weak models with high variance and low bias reduces variance. Bagging can be parallelised. Random forrests train forrest of strong decision trees on bootstraps and also randomly choose subset of features to make trees look different.</p>
-<img width="800" src="./imlp2_images/bagging.png" /></div>
-<div class="section" id="boosting">
-<h4>Boosting<a class="headerlink" href="#boosting" title="Permalink to this headline">¶</a></h4>
-<p>In <em>boosting</em>, we train multiple weak decision trees again on subsets of data bootstrappedd from the dataset. In every step we weight data by the error previous models have on prediction to direct the next model to decide better about them. We combine weak models with high bias and low variance to reduce their bias using linear combination of their predictions. Coeficients of this linear combination describe how well weak model decided about the weighted dataset.</p>
-<img width="800" src="./imlp2_images/boosting.png" /></div>
-<div class="section" id="stacking">
-<h4>Stacking<a class="headerlink" href="#stacking" title="Permalink to this headline">¶</a></h4>
-<p>In <em>stacking</em>, we train multiple heterogenous (weak) models and then we train another model that uses predictions of multiple models as an input to get final prediction. For example, we train logistic regression, SVM, kNN classifiers and then we train neural net to get final prediction.</p>
-<img width="600" src="./imlp2_images/stacking.png" />
+<p><img alt="" src="../_images/ensemble.png" /></p>
+<p>We can achieve better performace by using ensemble methods that help us trade variance for bias and vice versa. These methods usually train multiple weak (shallow) decision trees making a forrest out of them. Prediction of multiple models in ensemble is then usually a average of predictions from trees or a maximum.</p>
 <p>We use adaptive boosting algorithm <em>AdaBoost</em> as and example of ensemble.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span><span class="p">,</span> <span class="n">RandomForestClassifier</span>
 </pre></div>
@@ -1234,18 +1546,32 @@ AUC on testing data (class 1) 0.87
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ada Boosting Classifier
               precision    recall  f1-score   support
 
-           0       0.93      0.79      0.86     33276
-           1       0.52      0.77      0.62      9382
+           0       0.92      0.79      0.85     33114
+           1       0.52      0.77      0.62      9544
 
     accuracy                           0.79     42658
    macro avg       0.72      0.78      0.74     42658
-weighted avg       0.84      0.79      0.80     42658
+weighted avg       0.83      0.79      0.80     42658
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="bagging">
+<h4>Bagging<a class="headerlink" href="#bagging" title="Permalink to this headline">¶</a></h4>
+<p>In <em>bagging</em>, we train multiple weak decision trees on subsets of data bootstrapped from the dataset. We average their predictions. Avaraging of predictions from weak models with high variance and low bias reduces variance. Bagging can be parallelised. Random forrests train forrest of strong decision trees on bootstraps and also randomly choose subset of features to make trees look different.</p>
+<p><img alt="" src="../_images/bagging.png" /></p>
+</div>
+<div class="section" id="boosting">
+<h4>Boosting<a class="headerlink" href="#boosting" title="Permalink to this headline">¶</a></h4>
+<p>In <em>boosting</em>, we train multiple weak decision trees again on subsets of data bootstrappedd from the dataset. In every step we weight data by the error previous models have on prediction to direct the next model to decide better about them. We combine weak models with high bias and low variance to reduce their bias using linear combination of their predictions. Coeficients of this linear combination describe how well weak model decided about the weighted dataset.</p>
+<p><img alt="" src="../_images/boosting.png" /></p>
+</div>
+<div class="section" id="stacking">
+<h4>Stacking<a class="headerlink" href="#stacking" title="Permalink to this headline">¶</a></h4>
+<p>In <em>stacking</em>, we train multiple heterogenous (weak) models and then we train another model that uses predictions of multiple models as an input to get final prediction. For example, we train logistic regression, SVM, kNN classifiers and then we train neural net to get final prediction.</p>
+<p><img alt="" src="../_images/stacking.png" /></p>
 <p>We check another single model in this case gradient boosted tree in xgboost package. This is state of the art model suitable for many classification and regression problems.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 </pre></div>
@@ -1255,7 +1581,7 @@ weighted avg       0.84      0.79      0.80     42658
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
-                      <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s2">&quot;binary:logistic&quot;</span><span class="p">))])</span>
+                      <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s2">&quot;binary:logistic&quot;</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">))])</span>
 
 <span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gradient Boosted Classifier&#39;</span><span class="p">)</span>
@@ -1267,12 +1593,12 @@ weighted avg       0.84      0.79      0.80     42658
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gradient Boosted Classifier
               precision    recall  f1-score   support
 
-           0       0.87      0.95      0.91     33011
-           1       0.75      0.50      0.60      9647
+           0       0.88      0.95      0.91     33114
+           1       0.75      0.56      0.64      9544
 
-    accuracy                           0.85     42658
-   macro avg       0.81      0.73      0.75     42658
-weighted avg       0.84      0.85      0.84     42658
+    accuracy                           0.86     42658
+   macro avg       0.82      0.75      0.78     42658
+weighted avg       0.85      0.86      0.85     42658
 </pre></div>
 </div>
 </div>
@@ -1281,7 +1607,7 @@ weighted avg       0.84      0.85      0.84     42658
 </div>
 <div class="section" id="gain-lift">
 <h3>Gain &amp; Lift<a class="headerlink" href="#gain-lift" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lift and gain curves</span>
 <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
@@ -1344,7 +1670,7 @@ weighted avg       0.84      0.85      0.84     42658
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">d_lift</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dummy&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">i_lift</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Ideal&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">m_lift</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Model&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;top right&#39;</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">);</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
@@ -1355,7 +1681,7 @@ weighted avg       0.84      0.85      0.84     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_84_0.png" src="../_images/imlp_2_modeling_84_0.png" />
+<img alt="../_images/imlp_2_modeling_95_0.png" src="../_images/imlp_2_modeling_95_0.png" />
 </div>
 </div>
 </div>
@@ -1374,13 +1700,13 @@ weighted avg       0.84      0.85      0.84     42658
 <p>Lift tells us how much higher the actual percentage of positive instances identified by model A is than the rate expected by model B.</p>
 <p>Eg. in campaign optimization settings, cumulative gain tells us how many users we have to contact to target <span class="math notranslate nohighlight">\(X%\)</span> of users who are most likely to respons.</p>
 <p>It’s sometimes handy to see gain and lift charts by decile for better comprehension.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># gain and lift by deciles</span>
 
 <span class="k">def</span> <span class="nf">declift</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">y_test</span><span class="p">):</span>
     <span class="n">deciles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">ticks</span><span class="p">,</span> <span class="n">mgain</span> <span class="o">=</span> <span class="n">gain</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">ticks</span><span class="p">,</span> <span class="n">mgain</span> <span class="o">=</span> <span class="n">cumgain</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
     <span class="n">decgain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">mgain</span><span class="p">,</span> <span class="n">deciles</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">npos</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1389,7 +1715,8 @@ weighted avg       0.84      0.85      0.84     42658
     <span class="n">lift</span> <span class="o">=</span> <span class="p">(</span><span class="n">decgain</span> <span class="o">*</span> <span class="n">npos</span> <span class="o">/</span> <span class="n">ns</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">npos</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="c1"># decile lift</span>
     <span class="k">return</span> <span class="n">lift</span>
 
-<span class="n">gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">gain</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">deciles</span><span class="p">),</span> <span class="n">prepend</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">deciles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">gains</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">cumgain</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">deciles</span><span class="p">),</span> <span class="n">prepend</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lifts</span> <span class="o">=</span> <span class="n">declift</span><span class="p">(</span><span class="n">y_score</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
@@ -1411,7 +1738,7 @@ weighted avg       0.84      0.85      0.84     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_90_0.png" src="../_images/imlp_2_modeling_90_0.png" />
+<img alt="../_images/imlp_2_modeling_101_0.png" src="../_images/imlp_2_modeling_101_0.png" />
 </div>
 </div>
 </div>
@@ -1433,7 +1760,61 @@ weighted avg       0.84      0.85      0.84     42658
 <p><em>Good fit</em> is identified by a training and validation curves that increase, become flat, and the generalization gap between training and validation curves is narrow.</p>
 <p><em>Unrepresentative dataset</em> means that the training dataset does not provide sufficient information to learn the problem. This is signaled by training curve converging to lower scores.</p>
 <p>Some more details can be found <a class="reference external" href="https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/">here</a>.</p>
+<p>We train additional <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">LogisticRegression</a> and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">RandomForest</a> classifiers on the same data to be able to compare their perfomance using learning curves.</p>
 <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="n">logit_model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
+                     <span class="p">(</span><span class="s1">&#39;sca&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+                     <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">())])</span>
+
+<span class="n">logit_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;LogisticRegression Classifier&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">logit_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression Classifier
+              precision    recall  f1-score   support
+
+           0       0.87      0.94      0.91     33114
+           1       0.73      0.52      0.61      9544
+
+    accuracy                           0.85     42658
+   macro avg       0.80      0.73      0.76     42658
+weighted avg       0.84      0.85      0.84     42658
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
+                     <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">())])</span>
+
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RandomForestClassifier&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomForestClassifier
+              precision    recall  f1-score   support
+
+           0       0.87      0.96      0.91     33114
+           1       0.78      0.49      0.60      9544
+
+    accuracy                           0.86     42658
+   macro avg       0.82      0.73      0.76     42658
+weighted avg       0.85      0.86      0.84     42658
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># learning curves</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">learning_curve</span>
@@ -1471,7 +1852,7 @@ weighted avg       0.84      0.85      0.84     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_93_0.png" src="../_images/imlp_2_modeling_93_0.png" />
+<img alt="../_images/imlp_2_modeling_107_0.png" src="../_images/imlp_2_modeling_107_0.png" />
 </div>
 </div>
 </div>
@@ -1486,12 +1867,10 @@ weighted avg       0.84      0.85      0.84     42658
 </ol>
 <p>Some more details are available <a class="reference external" href="https://scikit-learn.org/stable/modules/grid_search.html">here</a> and <a class="reference external" href="https://towardsdatascience.com/a-conceptual-explanation-of-bayesian-model-based-hyperparameter-optimization-for-machine-learning-b8172278050f">here</a>.</p>
 <p>We try to find the best set of parameters for our <em>RainTomorrow</em> weather problem.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">VotingClassifier</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">VotingClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 
 <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">.25</span><span class="p">)</span>
 </pre></div>
@@ -1508,18 +1887,12 @@ weighted avg       0.84      0.85      0.84     42658
                                       <span class="p">(</span><span class="s1">&#39;rd&#39;</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">)),</span>
                                       <span class="p">(</span><span class="s1">&#39;ada&#39;</span><span class="p">,</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
                                                                 <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">))),</span>
-                                      <span class="p">(</span><span class="s1">&#39;xgb&#39;</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">())],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__lr__max_iter&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">],</span>
-          <span class="s1">&#39;clf__lr__class_weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">}],</span>
-          <span class="s1">&#39;clf__rd__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+                                      <span class="p">(</span><span class="s1">&#39;xgb&#39;</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">,</span> <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">))],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">))]</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;clf__lr__class_weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">}],</span>
+          <span class="s1">&#39;clf__rd__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
           <span class="s1">&#39;clf__rd__max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-          <span class="s1">&#39;clf__xgb__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+          <span class="s1">&#39;clf__xgb__n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
           <span class="s1">&#39;clf__xgb__max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
           <span class="s1">&#39;clf__voting&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="s1">&#39;hard&#39;</span><span class="p">]}</span>
 </pre></div>
@@ -1536,7 +1909,7 @@ weighted avg       0.84      0.85      0.84     42658
 <p><em>Cross validation</em> helps us to prevent overfitting of a model at hand by presenting it with data it hasn’t seen in training phase. It is similar to hold-out test set concept but generalize it when we need multiple such splits to evaluate perfomance of multiple models. It also prevents getting <em>lucky split</em> which put more difficult instances to the training data and easy instances to testing data. In <span class="math notranslate nohighlight">\(k\)</span>-fold cross validation, we split data into <span class="math notranslate nohighlight">\(k\)</span> folds (partitions), and we do <span class="math notranslate nohighlight">\(k\)</span> separate training and evaluation steps using <span class="math notranslate nohighlight">\(k-1\)</span> folds for training and the <span class="math notranslate nohighlight">\(k\)</span>th fold for evaluation in every step.</p>
 <p><span class="math notranslate nohighlight">\(4\)</span>-fold cross validation
 <img alt="4-fold cross validation" src="../_images/cross_validation.png" /></p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;RainTomorrow&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;RainTomorrow&#39;</span><span class="p">]</span>
@@ -1547,12 +1920,12 @@ weighted avg       0.84      0.85      0.84     42658
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide_output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_model</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">Pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="p">),</span> 
                           <span class="n">param_grid</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> 
                           <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> 
-                          <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">iid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                          <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">grid_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">The best cross-validation f1-score: </span><span class="si">{</span><span class="n">grid_model</span><span class="o">.</span><span class="n">best_score_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">The best parameters: </span><span class="si">{</span><span class="n">grid_model</span><span class="o">.</span><span class="n">best_params_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -1560,20 +1933,191 @@ weighted avg       0.84      0.85      0.84     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 3 folds for each of 288 candidates, totalling 864 fits
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 4 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  33 tasks      | elapsed: 24.1min
-[Parallel(n_jobs=-1)]: Done 154 tasks      | elapsed: 125.5min
-[Parallel(n_jobs=-1)]: Done 357 tasks      | elapsed: 257.5min
-[Parallel(n_jobs=-1)]: Done 640 tasks      | elapsed: 465.4min
-[Parallel(n_jobs=-1)]: Done 864 out of 864 | elapsed: 621.7min finished
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best cross-validation f1-score: 0.6504555344192579
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 3 folds for each of 64 candidates, totalling 192 fits
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.1min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.4min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.6min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.4min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.4min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.6min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.4min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.1min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.4min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 3.2min
+[CV] END clf__lr__class_weight=balanced, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.4min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=5, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.3min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.7min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.8min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=5, clf__voting=hard, clf__xgb__max_depth=4, clf__xgb__n_estimators=40; total time= 3.2min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=2, clf__xgb__n_estimators=40; total time= 3.0min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=soft, clf__xgb__max_depth=4, clf__xgb__n_estimators=20; total time= 2.9min
+[CV] END clf__lr__class_weight={0: 1, 1: 10}, clf__rd__max_depth=10, clf__rd__n_estimators=40, clf__voting=hard, clf__xgb__max_depth=2, clf__xgb__n_estimators=20; total time= 2.9min
 
-The best parameters: {&#39;clf__lr__class_weight&#39;: &#39;balanced&#39;, &#39;clf__lr__max_iter&#39;: 3000, &#39;clf__rd__max_depth&#39;: 10, &#39;clf__rd__n_estimators&#39;: 50, &#39;clf__voting&#39;: &#39;soft&#39;, &#39;clf__xgb__max_depth&#39;: 4, &#39;clf__xgb__n_estimators&#39;: 100}
+The best cross-validation f1-score: 0.6471737714124829
+
+The best parameters: {&#39;clf__lr__class_weight&#39;: &#39;balanced&#39;, &#39;clf__rd__max_depth&#39;: 10, &#39;clf__rd__n_estimators&#39;: 40, &#39;clf__voting&#39;: &#39;soft&#39;, &#39;clf__xgb__max_depth&#39;: 4, &#39;clf__xgb__n_estimators&#39;: 40}
 </pre></div>
 </div>
 </div>
@@ -1590,12 +2134,12 @@ The best parameters: {&#39;clf__lr__class_weight&#39;: &#39;balanced&#39;, &#39;
 
               precision    recall  f1-score   support
 
-           0       0.91      0.88      0.89     27479
-           1       0.62      0.69      0.65      8070
+           0       0.91      0.88      0.89     27451
+           1       0.63      0.69      0.66      8098
 
-    accuracy                           0.83     35549
-   macro avg       0.76      0.78      0.77     35549
-weighted avg       0.84      0.83      0.84     35549
+    accuracy                           0.84     35549
+   macro avg       0.77      0.79      0.78     35549
+weighted avg       0.84      0.84      0.84     35549
 </pre></div>
 </div>
 </div>
@@ -1627,13 +2171,8 @@ weighted avg       0.84      0.83      0.84     35549
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">f_classif</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
               <span class="p">(</span><span class="s1">&#39;feature_selection&#39;</span><span class="p">,</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">score_func</span><span class="o">=</span><span class="n">f_classif</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)),</span>
               <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">AdaBoostClassifier</span><span class="p">())])</span>
 
@@ -1645,16 +2184,16 @@ weighted avg       0.84      0.83      0.84     35549
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          feature         score
-3     Humidity3pm  23656.062117
-23       Sunshine  11712.944411
-28      RainToday  10283.188282
-1        Cloud3pm   9502.777522
-2     Humidity9am   7007.758958
-0        Cloud9am   6539.568606
-21       Rainfall   6005.641114
-4     Pressure9am   5811.952766
-20  WindGustSpeed   5318.624426
-5     Pressure3pm   4856.702614
+11    Humidity3pm  25229.543195
+20       Rainfall  13456.267809
+13       Sunshine  12284.002953
+18      RainToday  10897.791004
+0        Cloud3pm  10532.684439
+1        Cloud9am   7253.261451
+10    Humidity9am   7217.973620
+6     Pressure9am   6149.951527
+7     Pressure3pm   5108.072026
+21  WindGustSpeed   4533.884146
 </pre></div>
 </div>
 </div>
@@ -1666,15 +2205,10 @@ weighted avg       0.84      0.83      0.84     35549
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectFromModel</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;ct&#39;</span><span class="p">,</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">features</span><span class="p">)),</span>
               <span class="p">(</span><span class="s1">&#39;feature_selection&#39;</span><span class="p">,</span> <span class="n">SelectFromModel</span>
-                <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">),</span> 
+                <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s1">&#39;l2&#39;</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">),</span> 
                  <span class="n">threshold</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
               <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">AdaBoostClassifier</span><span class="p">())])</span>
 <span class="n">m</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -1683,16 +2217,14 @@ weighted avg       0.84      0.83      0.84     35549
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classifition report on testing dataset
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-              precision    recall  f1-score   support
+           0       0.87      0.95      0.90     27451
+           1       0.73      0.51      0.60      8098
 
-           0       0.81      0.95      0.88     33131
-           1       0.59      0.22      0.32      9527
-
-    accuracy                           0.79     42658
-   macro avg       0.70      0.59      0.60     42658
-weighted avg       0.76      0.79      0.75     42658
+    accuracy                           0.85     35549
+   macro avg       0.80      0.73      0.75     35549
+weighted avg       0.84      0.85      0.83     35549
 </pre></div>
 </div>
 </div>
@@ -1706,7 +2238,7 @@ weighted avg       0.76      0.79      0.75     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 117 features for the final model
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 121 features for the final model
 </pre></div>
 </div>
 </div>
@@ -1715,11 +2247,11 @@ weighted avg       0.76      0.79      0.75     42658
 <div class="section" id="feature-importance">
 <h3>Feature Importance<a class="headerlink" href="#feature-importance" title="Permalink to this headline">¶</a></h3>
 <p>We can visualize feature importance from a trained classifier.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Feature importance</span>
 <span class="n">ada_model</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">()</span>
-<span class="n">ada_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_trans</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">ada_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_trans</span><span class="p">,</span> <span class="n">y_train_trans</span><span class="p">)</span>
 
 <span class="c1"># print(classification_report(y_test, ada_model.predict(x_test_trans)))</span>
 
@@ -1743,7 +2275,7 @@ weighted avg       0.76      0.79      0.75     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_118_0.png" src="../_images/imlp_2_modeling_118_0.png" />
+<img alt="../_images/imlp_2_modeling_132_0.png" src="../_images/imlp_2_modeling_132_0.png" />
 </div>
 </div>
 <ol class="simple">
@@ -29190,7 +29722,8 @@ weighted avg       0.76      0.79      0.75     42658
 	    this.color = _d2.default.scale.category10();
 	    this.color('predicted_value');
 	    // + 2 is due to it being a float
-	    var num_digits = Math.floor(Math.max(Math.log10(min_value), Math.log10(max_value))) + 2;
+	    console.log('CREATING THIS');
+	    var num_digits = Math.floor(Math.max(Math.log10(Math.abs(min_value)), Math.log10(Math.abs(max_value)))) + 2;
 	    num_digits = Math.max(num_digits, 3);
 
 	    var corner_width = 12 * num_digits;
@@ -38888,25 +39421,25 @@ weighted avg       0.76      0.79      0.75     42658
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divQ2ZM8I47GESI8MF"></div>
+        <div class="lime top_div" id="top_divQO0GYSV2ALLE1GN"></div>
 
         <script>
-        var top_div = d3.select('#top_divQ2ZM8I47GESI8MF').classed('lime top_div', true);
+        var top_div = d3.select('#top_divQO0GYSV2ALLE1GN').classed('lime top_div', true);
 
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["No", "Yes"], [0.511491198704764, 0.4885088012952359]);
+            var pp = new lime.PredictProba(pp_svg, ["No", "Yes"], [0.5124129983441561, 0.48758700165584395]);
 
 
         var exp_div;
             var exp = new lime.Explanation(["No", "Yes"]);
 
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["WindGustSpeed <= 7.64", -0.004908307106199028], ["Pressure9am <= 0.00", 0.002750037566429636], ["37.00 < Cloud3pm <= 52.00", 0.0021637419360773084], ["1011.00 < Cloud9am <= 1015.20", -0.0013025631633302463], ["57.00 < RainToday <= 70.00", 0.0006205170983166804]], 0, exp_div);
+                exp.show([["WindGustSpeed <= 3.47", 0.0036073573902726413], ["51.46 < Cloud9am <= 65.00", -0.0019742898773968142], ["8.20 < Humidity9am <= 8.50", -0.001895604785835713], ["0.00 < Pressure3pm <= 0.47", 0.0009885847647560586], ["4.00 < Humidity3pm <= 4.50", 0.0007569385760751604]], 0, exp_div);
 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["WindGustSpeed", "7.64", -0.004908307106199028], ["Pressure9am", "0.00", 0.002750037566429636], ["Cloud3pm", "44.00", 0.0021637419360773084], ["Cloud9am", "1014.90", -0.0013025631633302463], ["RainToday", "64.00", 0.0006205170983166804]], 0, raw_div);
+            exp.show_raw_tabular([["WindGustSpeed", "2.64", 0.0036073573902726413], ["Cloud9am", "60.00", -0.0019742898773968142], ["Humidity9am", "8.50", -0.001895604785835713], ["Pressure3pm", "0.18", 0.0009885847647560586], ["Humidity3pm", "4.50", 0.0007569385760751604]], 0, raw_div);
 
         </script>
         </body></html></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True label: 0
@@ -38933,38 +39466,38 @@ weighted avg       0.76      0.79      0.75     42658
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
 <span class="kn">import</span> <span class="nn">shap</span>
 
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s2">&quot;binary:logistic&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_trans</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s2">&quot;binary:logistic&quot;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">)</span>
+<span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_trans</span><span class="p">,</span> <span class="n">y_train_trans</span><span class="p">)</span>
 
 <span class="n">shap_explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">TreeExplainer</span><span class="p">(</span><span class="n">xgb_model</span><span class="p">)</span>
-<span class="n">shap_values</span> <span class="o">=</span> <span class="n">shap_explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_test_trans</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">shap_values</span> <span class="o">=</span> <span class="n">shap_explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">x_test_trans</span><span class="p">,</span> <span class="n">y_test_trans</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Individual prediction explanation. Red features push prediction higher, blue features push prediction lower.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">force_plot</span><span class="p">(</span><span class="n">shap_explainer</span><span class="o">.</span><span class="n">expected_value</span><span class="p">,</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">x_test_trans</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">matplotlib</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_134_0.png" src="../_images/imlp_2_modeling_134_0.png" />
+<img alt="../_images/imlp_2_modeling_148_0.png" src="../_images/imlp_2_modeling_148_0.png" />
 </div>
 </div>
 <p>Feature importance plot giving us overview of Shapley value distributions and signs of the contribution.</p>
 </div>
 <div class="section" id="aggregated-shapley-values">
 <h4>Aggregated Shapley Values<a class="headerlink" href="#aggregated-shapley-values" title="Permalink to this headline">¶</a></h4>
-<div class="cell docutils container">
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">x_test_trans</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="s1">&#39;Yes&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_137_0.png" src="../_images/imlp_2_modeling_137_0.png" />
+<img alt="../_images/imlp_2_modeling_151_0.png" src="../_images/imlp_2_modeling_151_0.png" />
 </div>
 </div>
 <ol class="simple">
@@ -38979,7 +39512,7 @@ weighted avg       0.76      0.79      0.75     42658
 <div class="section" id="what-technology-to-use">
 <h2>What Technology to Use<a class="headerlink" href="#what-technology-to-use" title="Permalink to this headline">¶</a></h2>
 <p>Technology stack in ML is much less matured compared to eg. software engineering. Best practices are undeveloped, it is very important to choose technology stack well.</p>
-<img width="600" src="https://miro.medium.com/max/1101/1*yGDZqNVkJINY61ONFV-aiA.jpeg" />
+<p><img alt="" src="https://miro.medium.com/max/1101/1*yGDZqNVkJINY61ONFV-aiA.jpeg" /></p>
 <p><a class="reference external" href="https://medium.com/memory-leak/introducing-redpoints-ml-workflow-landscape-312ca3c91b2f">Astasia Myers, Introducing Redpoint’s ML Workflow Landscape</a></p>
 <div class="section" id="impact-of-data-size-and-model-complexity">
 <h3>Impact of Data Size and Model Complexity<a class="headerlink" href="#impact-of-data-size-and-model-complexity" title="Permalink to this headline">¶</a></h3>
@@ -39031,7 +39564,7 @@ weighted avg       0.76      0.79      0.75     42658
 </div>
 <div class="section" id="sharing-knowledge-in-team">
 <h2>Sharing Knowledge in Team<a class="headerlink" href="#sharing-knowledge-in-team" title="Permalink to this headline">¶</a></h2>
-<p>Machine learning is iterative process, there are new ideas to try, new models to evaluate, new features to add, more data to play with. Sometimes datasets need to be revisited with fresh knowledge to crack modeling problem. Every analysis of data puts piece of puzzle in place. Knowledge has to be documented to be able to share it among data scientists in a form that is acceptible to them.</p>
+<p>Machine learning is an iterative process, there are new ideas to try, new models to evaluate, new features to add, more data to play with. Sometimes datasets need to be revisited with fresh knowledge to crack modeling problem. Every analysis of data puts piece of puzzle in place. Knowledge has to be documented to be able to share it among data scientists in a form that is acceptible to them.</p>
 <p>We made a good experience with following setup</p>
 <ol class="simple">
 <li><p>We version our scratchpad and unfinished notebooks in git repository just to backup them at the one place.</p></li>
@@ -39048,6 +39581,8 @@ weighted avg       0.76      0.79      0.75     42658
 <li><p>All notebooks have to be self-contained with all SQL code needed to retrieve data. Anyone that needs to reiterate on the problem can run, replicate, and verify complete notebook.</p></li>
 <li><p>Data analysis and modeling is usually not so satisfactory work on day or week span, it gets satisfacory over time though. Creating nicely formatted notebooks now and then largely improves satisfaction from daily work.</p></li>
 </ol>
+<p><a class="reference external" href="https://jupyterbook.org/intro.html">Jupyter Book</a> is another tool that can leverage git-based flow and render nice notebooks on the web e.g. using git actions. We choose Jupyter Book to create the set of posts you are reading now.</p>
+<p>We also experimented with <a class="reference external" href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>. It lacks good support for rendering jupyter notebooks.</p>
 <p>Example of knowledge repository.</p>
 <p><img alt="Knowledge Repository" src="https://user-images.githubusercontent.com/124910/37555895-d6ad133a-2a42-11e8-9bb5-1b7ee8d60ef9.png" /></p>
 <p><a id="deploy"></a></p>
@@ -39062,7 +39597,8 @@ weighted avg       0.76      0.79      0.75     42658
 <li><p>The distribution of the outputs of the model changed.</p></li>
 <li><p>Compare perfomance of the model on some business metric using control group.</p></li>
 </ol>
-<div class="cell docutils container">
+<p>Checking shift in distributions of predictions at the time of training and after some time of production deployment.</p>
+<div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># distribution of predictions</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
@@ -39086,7 +39622,7 @@ weighted avg       0.76      0.79      0.75     42658
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/imlp_2_modeling_149_0.png" src="../_images/imlp_2_modeling_149_0.png" />
+<img alt="../_images/imlp_2_modeling_164_0.png" src="../_images/imlp_2_modeling_164_0.png" />
 </div>
 </div>
 <p>To monitor the change in the performance metrics of the model would require to acquire true label soon after prediction of the model is made which is usually hard.</p>
@@ -39176,10 +39712,11 @@ Lift of the model at 10% of testing data is: 1.500000
 Lift of the model at 20% of testing data is: 1.411765
 </pre></div>
 </div>
-<img alt="../_images/imlp_2_modeling_156_1.png" src="../_images/imlp_2_modeling_156_1.png" />
+<img alt="../_images/imlp_2_modeling_171_1.png" src="../_images/imlp_2_modeling_171_1.png" />
 </div>
 </div>
-<img src="./imlp2_images/model_runner_runner.png" width="600"/><p>Machine learning steps like splitting data for cross validation, training, evaluation, prediction are always the same. Many business applications are using the same data and the same transformations of the data again and again. It is much more practical to have some catalog of higher level features we can use to declaratively configure our solution.</p>
+<p><img alt="" src="../_images/model_runner_runner.png" /></p>
+<p>Machine learning steps like splitting data for cross validation, training, evaluation, prediction are always the same. Many business applications are using the same data and the same transformations of the data again and again. It is much more practical to have some catalog of higher level features we can use to declaratively configure our solution.</p>
 <ol class="simple">
 <li><p><em>ModelRunner</em> is template class that implements machine learning workflow for classification or regression.</p></li>
 <li><p>ModelRunner is configured with <em>DataSource</em> to be able to load dataset.</p></li>
@@ -39195,7 +39732,8 @@ Lift of the model at 20% of testing data is: 1.411765
 </ol>
 </li>
 </ol>
-<img src="./imlp2_images/model_runner.png" width="600"/></div>
+<p><img alt="" src="../_images/model_runner.png" /></p>
+</div>
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
@@ -39230,54 +39768,42 @@ Lift of the model at 20% of testing data is: 1.411765
 
               </div>
               
-        
             
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="imlp_1_data.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Data</p>
-            </div>
-        </a>
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="imlp_1_data.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Data</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="imlp_3_experiments.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Experimenation</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="imlp_3_experiments.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Experimenation</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Ondra Zahradnik, Martin Neznal & Data Science Team at Avast<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Ondra Zahradnik, Martin Neznal & Data Science Team at Avast<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
